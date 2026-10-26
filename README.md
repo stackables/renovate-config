@@ -10,7 +10,7 @@
 ## What it does
 
 - **One weekly PR** for all minor and patch updates, Mondays 10–17 Europe/Berlin, office hours, when the self-hosted CI runners are up.
-- **Lock file maintenance** in the same window: one PR that refreshes the lockfile, so transitive dependencies (where most security alerts sit) move to the newest version their parents allow. Renovate's release age does not apply to it, so pnpm repositories set `minimumReleaseAge: 10080` in `pnpm-workspace.yaml` as well.
+- **Lock file maintenance** in the same window: one PR that refreshes the lockfile, so transitive dependencies (where most security alerts sit) move to the newest version their parents allow. Renovate cannot age a lock file refresh (pnpm picks the versions), so its own 7-day check is off for it (`minimumReleaseAge: null`): every pnpm repository sets `minimumReleaseAge: 10080` in `pnpm-workspace.yaml` instead, and pnpm keeps out anything younger. Without this the check never passes and lock file PRs never merge.
 - **7-day release age** for every update.
 - **Majors wait for approval** on each repository's Dependency Dashboard.
 - **Security fixes** (`[SECURITY]` PRs) skip the schedule, the release age and the approval. Renovate finds them through GitHub's vulnerability alerts, so keep those on.
