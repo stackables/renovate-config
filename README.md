@@ -9,7 +9,7 @@
 
 ## What it does
 
-- **One weekly PR** for all minor and patch updates, Mondays 10–17 Europe/Berlin, office hours, when the self-hosted CI runners are up.
+- **One weekly PR** for all minor and patch updates, any time on Monday, Europe/Berlin. Renovate's hosted app reaches a repository only every few hours, so an office-hours window can pass without a run (it did on 9 November). A PR opened before the self-hosted CI runners are up waits in GitHub's queue, which holds a job for a self-hosted runner for 24 hours.
 - **Lock file maintenance** in the same window: one PR that refreshes the lockfile, so transitive dependencies (where most security alerts sit) move to the newest version their parents allow. Renovate cannot age a lock file refresh (pnpm picks the versions), so its own 7-day check is off for it (`minimumReleaseAge: null`): every pnpm repository sets `minimumReleaseAge: 10080` in `pnpm-workspace.yaml` instead, and pnpm keeps out anything younger. Without this the check never passes and lock file PRs never merge.
 - **7-day release age** for every update.
 - **Majors wait for approval** on each repository's Dependency Dashboard.
